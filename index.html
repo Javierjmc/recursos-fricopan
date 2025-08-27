@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogos de Fricopan</title>
+    <style>
+        /* Estilos generales y de la página */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        /* Estilos de los botones */
+        .catalogs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .catalog-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            background-color: #ffffff;
+            border: 2px solid #e1e8ed;
+            color: #34495e;
+            padding: 1.25rem 1rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .catalog-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+            color: #3498db;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            .catalogs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Descarga nuestros Catálogos</h1>
+
+    <div id="catalogos-container" class="catalogs-grid">
+        </div>
+
+    <script>
+        // La lista de todos tus catálogos
+        const catalogs = [
+            { name: 'bolleria-dulce.pdf', text: 'Catálogo de Bollería Dulce' },
+            { name: 'bolleria-salada.pdf', text: 'Catálogo de Bollería Salada' },
+            { name: 'bretzel.pdf', text: 'Catálogo de Bretzel' },
+            { name: 'burger.pdf', text: 'Catálogo de Hamburguesas' },
+            { name: 'hogazas.pdf', text: 'Catálogo de Hogazas' },
+            { name: 'panamar.pdf', text: 'Catálogo de Panamar' },
+            { name: 'panecillos.pdf', text: 'Catálogo de Panecillos' },
+            { name: 'tartas.pdf', text: 'Catálogo de Tartas' },
+        ];
+
+        // Encuentra el contenedor en tu HTML
+        const container = document.getElementById('catalogos-container');
+
+        // Itera sobre la lista y crea un enlace para cada catálogo
+        catalogs.forEach(catalog => {
+            const link = document.createElement('a');
+            link.href = `pdf/${catalog.name}`;
+            link.className = 'catalog-button';
+            link.download = ''; // Hace que el archivo se descargue
+            link.textContent = catalog.text;
+            
+            // Agrega el enlace al contenedor
+            container.appendChild(link);
+        });
+    </script>
+
+</body>
+</html>
