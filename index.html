@@ -3,104 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogos de Fricopan</title>
+    <title>Catálogos Fricopan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Estilos generales y de la página */
+
+        /* ===== FONDO PREMIUM ===== */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #f4f7f9;
-            color: #333;
             margin: 0;
             padding: 2rem;
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
             text-align: center;
-        }
-
-        h1 {
             color: #2c3e50;
-            margin-bottom: 2rem;
+
+            background: linear-gradient(135deg, #eaf1f8, #cfd8e6);
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Estilos de los botones */
+        /* Textura suave */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* Líneas decorativas */
+        body::after {
+            content: "";
+            position: fixed;
+            top: -150px;
+            right: -150px;
+            width: 400px;
+            height: 400px;
+            background: #ffffff20;
+            border-radius: 50%;
+            filter: blur(70px);
+            pointer-events: none;
+        }
+
+        /* ===== LOGO ===== */
+        .logo-container {
+            background: #ffffff;
+            padding: 1rem 1.3rem;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            transition: transform .3s ease;
+        }
+
+        .logo-container:hover { transform: scale(1.03); }
+
+        .logo-container img {
+            max-width: 210px;
+            display: block;
+        }
+
+        /* ===== TÍTULO ===== */
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 700;
+            margin-bottom: 2.2rem;
+            color: #1d2d3a;
+        }
+
+        /* ===== GRID ===== */
         .catalogs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 1.6rem;
             width: 100%;
             max-width: 900px;
         }
-        
+
+        /* ===== TARJETA/BOTÓN ===== */
         .catalog-button {
             display: flex;
-            justify-content: center;
             align-items: center;
+            gap: 0.8rem;
+
+            padding: 1.1rem 1.2rem;
+            background: #ffffff;
+            border-radius: 14px;
             text-decoration: none;
-            background-color: #ffffff;
-            border: 2px solid #e1e8ed;
             color: #34495e;
-            padding: 1.25rem 1rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
+
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            transition: all .25s ease;
         }
 
         .catalog-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-            border-color: #3498db;
-            color: #3498db;
+            background: #f4f9ff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-6px);
+            color: #0a6bcb;
         }
 
-        /* Responsive design */
-        @media (max-width: 600px) {
-            body {
-                padding: 1rem;
-            }
-            .catalogs-grid {
-                grid-template-columns: 1fr;
-            }
+        /* Ícono Descargar */
+        .icon {
+            width: 22px;
+            height: 22px;
+            fill: #4a6782;
+            transition: fill .25s ease;
         }
+
+        .catalog-button:hover .icon {
+            fill: #0a6bcb;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1.5rem; }
+            h1 { font-size: 1.7rem; }
+            .logo-container img { max-width: 170px; }
+        }
+
     </style>
 </head>
+
 <body>
+
+    <div class="logo-container">
+        <img src="./fricopan-borde-blanco.png" alt="Logo de Fricopan">
+    </div>
 
     <h1>Descarga nuestros Catálogos</h1>
 
-    <div id="catalogos-container" class="catalogs-grid">
-        </div>
+    <div id="catalogos-container" class="catalogs-grid"></div>
 
     <script>
-        // La lista de todos tus catálogos
         const catalogs = [
-            { name: 'bolleria-dulce.pdf', text: 'Catálogo de Bollería Dulce' },
-            { name: 'bolleria-salada.pdf', text: 'Catálogo de Bollería Salada' },
-            { name: 'bretzel.pdf', text: 'Catálogo de Bretzel' },
-            { name: 'burger.pdf', text: 'Catálogo de Hamburguesas' },
-            { name: 'hogazas.pdf', text: 'Catálogo de Hogazas' },
-            { name: 'panamar.pdf', text: 'Catálogo de Panamar' },
-            { name: 'panecillos.pdf', text: 'Catálogo de Panecillos' },
-            { name: 'tartas.pdf', text: 'Catálogo de Tartas' },
-            { name: 'NOVEDADES-EN-TARTAS.pdf', text: 'Catálogo de Novedades en Tartas' },
-            { name: 'SOLUCIONES-GASTRONOMICAS.pdf', text: 'Catálogo de Soluciones Gastronómicas' },
+            { name: 'CATALOGO-COMPLETO.pdf', text: 'Catálogo General Completo' },
+            { name: '5TA-GAMA.pdf', text: 'Catálogo 5ª Gama' }, 
+            { name: 'BREZEL.pdf', text: 'Catálogo de Bretzel' },
+            { name: 'BURGERS.pdf', text: 'Catálogo de Burgers' },
+            { name: 'ESPECIALIDADES.pdf', text: 'Catálogo de Especialidades' }, 
+            { name: 'PANECILLOS.pdf', text: 'Catálogo de Panecillos' }, 
+            { name: 'SIN-GLUTEN.pdf', text: 'Catálogo de Pan Sin Gluten' },
+            { name: 'SMOOTHIES.pdf', text: 'Catálogo de Smoothies' }, 
+            { name: 'TARTAS-Y-POSTRES.pdf', text: 'Catálogo de Tartas y Postres' }, 
+            { name: 'BAGUETTES.pdf', text: 'Catálogo de Baguettes' },
+            { name: 'BOLLERIA-DULCE.pdf', text: 'Catálogo de Bollería Dulce' },
+            { name: 'BOLLERIA-SALADA.pdf', text: 'Catálogo de Bollería Salada' },
+            { name: 'HOGAZAS.pdf', text: 'Catálogo de Hogazas' },
         ];
 
-        // Encuentra el contenedor en tu HTML
         const container = document.getElementById('catalogos-container');
 
-        // Itera sobre la lista y crea un enlace para cada catálogo
         catalogs.forEach(catalog => {
             const link = document.createElement('a');
             link.href = `pdf/${catalog.name}`;
             link.className = 'catalog-button';
-            link.download = ''; // Hace que el archivo se descargue
-            link.textContent = catalog.text;
-            
-            // Agrega el enlace al contenedor
+            link.download = '';
+
+            // Icono SVG de descarga
+            link.innerHTML = `
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                ${catalog.text}
+            `;
             container.appendChild(link);
         });
     </script>
